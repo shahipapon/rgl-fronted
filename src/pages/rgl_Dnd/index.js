@@ -8,8 +8,6 @@ import CardImageSingle from "../../images/CardImageSingle.png";
 import rglAPIController from "../../services/api.services";
 import "../../styles.css";
 
-
-const axios = require("axios");
 const ReactGridLayout = WidthProvider(GridLayout);
 
 const dndImageComponents = { CardImageSingle, CardImageMulti };
