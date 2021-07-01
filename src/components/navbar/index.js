@@ -14,6 +14,12 @@ const Navbar = () => {
           <NavLink to="/renderPage" activeStyle>
             Render Designed Page
           </NavLink>
+          <NavLink to="/tableFrontend" activeStyle>
+          TableFrontend
+          </NavLink>
+          <NavLink to="/tableDnd" activeStyle>
+          TableDnd
+          </NavLink>
 		  {/* <NavLink to="/item1" activeStyle>
             item 1 page
           </NavLink>

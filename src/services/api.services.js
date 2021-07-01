@@ -13,19 +13,6 @@ const rglAPIController = {
       console.log("error", error);
     }
   },
-  updateRglConfig:  async (data) => {
-    try {
-      const response = await axios.put(`${path.URL}/addrgldata`,{
-        data: data, 
-      });
-      return response;
-    } catch (error) {
-      console.log("error", error);
-    }
- 
-  },
-
-
   getAllUser: async () => {
     try {
       const response = await axios.get(`${path.URL}/user`);

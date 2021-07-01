@@ -10,7 +10,7 @@ export default function Item1({ pageData }) {
   async function getUser() {
     if (pageData.info && pageData.info) {
       const response = await rglAPIController.getOneUser(pageData.info);
-      // console.log("user info", response.data);
+      console.log("user info", response.data);
       setUserInfo(response.data);
     }
   }

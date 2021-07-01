@@ -7,8 +7,6 @@ import CardImageMulti from "../../images/CardImageMulti.png";
 import CardImageSingle from "../../images/CardImageSingle.png";
 import rglAPIController from "../../services/api.services";
 import "../../styles.css";
-
-
 const axios = require("axios");
 const ReactGridLayout = WidthProvider(GridLayout);
 
@@ -19,7 +17,7 @@ const dndImageComponentsBase64 = {
     "data:image/png;base64,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",
 };
 
-export default function Rgl() {
+export default function TableDnd() {
   const [allStates, setAllStates] = useState("");
   const [dndClickedDataInfo, SetDndClickedDataInfo] = useState(null);
   const [selectedItem, setSelectedItem] = useState();
@@ -28,15 +26,12 @@ export default function Rgl() {
 
   useEffect(() => {
     getPreviousRenderedData();
-    getUser();
     
   }, []);
 
   
 
   async function getPreviousRenderedData (){
-    axios.get('http://localhost:3008/api/rglData')
-
     const response = await rglAPIController.getAll();
     let page = response.data[0].data;
     setAllStates(JSON.parse(page))
@@ -69,8 +64,18 @@ export default function Rgl() {
   }
 
   function onLayoutChange(updateLayout) {
-    
- 
+  console.log("🚀 ~ file: index.js ~ line 72 ~ onLayoutChange ~ updateLayout", updateLayout)
+  let gfg = _.orderBy(updateLayout, ['y', 'x'], 
+  ['asc', 'asc']);
+  console.log("🚀 gfg", gfg)
+
+
+  var result = _(updateLayout)
+            .groupBy(x => x.y)
+            .map((value, key) => ({y: key, x: value}))
+            .value();
+            console.log("group res", result)
+
 
     const items = [...allStates.items];
 
@@ -136,6 +141,7 @@ export default function Rgl() {
         h: 4,
       }),
     };
+    console.log("onDrop ~ newGridItem", newGridItem)
 
     setAllStates(newGridItem);
   }
@@ -153,106 +159,127 @@ export default function Rgl() {
         // console.error(err);
         alert('Something Wrong')
       });
+    // console.log('allStates: ',allStates)
       alert('Done!!! Please go render page to check')
  }
-  return (
-    <>
-  
-      <div className="container mx-auto px-20">
-      
-        <div>
-          Dragged Components:
-        </div>
-        {/* Drag MEnu  */}
-        <div>
-          <div
-            className="border inline-block my-4 bg-gray-300"
-            onClick={() => setSelectedItem(null)}
-          >
-            <>
-              {draggedItem.map((item) => (
-                <div
-                  className=" inline-block pr-10 mx-2 pb-2"
-                  key={item.name}
-                  draggable={true}
-                  unselectable="on"
-                  title={item.name}
-                  // this is a hack for firefox
-                  // Firefox requires some kind of initialization
-                  // which we can do by adding this attribute
-                  // @see https://bugzilla.mozilla.org/show_bug.cgi?id=568313
-                  onDragStart={(e) => {
-                    e.dataTransfer.setData("text/plain", "");
-                    onItemSelected(item, true);
-                  }}
-                  //   onDragEnd={(e) => onItemSelected(item, true)}
-                  data-layout={item.layout}
-                  onClick={() => onItemSelected(item)}
-                >
-                  <div style={{}}>
-                    <span style={{ paddingBottom: "10px" }}>{item.name}</span>
-                    <img src={dndImageComponents[item.image]} alt={item.name} />
-                  </div>
-                </div>
-              ))}
-            </>
-          </div>
+ return (
+   <div className="container mx-auto py-6" style={{ maxWidth: "1180px" }}>
+     {/* first div*/}
+     <div className="  md:grid grid-cols-12  gap-3 pt-2 lg:px-0 md:px-5  border-4 shadow-2xl ">
+       <div class=" col-span-12  shadow-lg border-2 border-gray-400 ">
+         <div class=" py-2  text-center border-b shadow-lg ">
+           <h4>label 1</h4>
+         </div>
+       </div>
+     </div>
 
-          {/* components properties */}
+     {/* button dnd/ html */}
+     <div className="  md:grid grid-cols-12  gap-3 pt-2 lg:px-0 md:px-5  border-4 shadow-2xl ">
+       <div className="col-span-12 text-center shadow-lg border-2 border-gray-400">
+         <div className="flex inline-flex  text-left py-4 ">
+           <button
+             class="bg-red-500 text-white rounded-full active:bg-purple-600 font-bold uppercase text-sm px-8 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+             type="button"
+           >
+             Design
+           </button>{" "}
+           <button
+             class="bg-red-500 text-white rounded-full active:bg-purple-600 font-bold uppercase text-sm px-8 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+             type="button"
+           >
+             Html
+           </button>
+         </div>
+       </div>
+       {/* ......... */}
+     </div>
 
-          <div className="p-2 inline-block">
-            {selectedItem === "item1" ? (
-              <label>
-                Select Name For This Component:
-                <select
-                  className="pl-2 m-2"
-                  // value={userName}
-                  onChange={(e) => {
-                    allStates.items.map((obj) => obj.objKey === selectedItemKey  ? (obj.info = e.target.value) : ""  );
-                    console.log(e.target.value);
-                  }}
-                >
-                 {Object.keys(userName).length >= 1
-                    ? userName.values.map((v) => ( <option key={v?.id} value={v?.id}> {v?.name}  </option>  ))  : ""}
-                </select>
-              </label>
-            ) : (
-              <label>No Properties available for this {selectedItem}</label>
-            )}
-          </div>
+     <div className="  md:grid grid-cols-12  gap-3 pt-2 lg:px-0 md:px-5  ">
+     {/* Left Side  */}
+       <div class=" col-span-3  shadow-lg border border-gray-400 ">
+         <div class=" py-2  text-center border-b shadow-lg ">
+           <h4>Dynamic Control</h4>
+         </div>
+         <div className="py-2 px-6">
+           <img
+             className="object-cover object-center h-20 w-96"
+             src="../images/CardImageSingle.png"
+             alt="-"
+           />
+         </div>
 
-          {/* components properties */}
-        </div>
-        {/* Drag MEnu end  */}
+         <div className="py-2 px-6">
+           <img
+             className="object-cover object-center h-20 w-96"
+             src="/component.png"
+             alt="--"
+           />
+         </div>
 
-        <ReactGridLayout
-          className="layout border-4 border-indigo-600 bg-gray-300 overflow-y-auto  	"
-          style={{minHeight:"90vh"}}
-   
-          cols={12}
-          rowHeight={20}
-          onDrop={onDrop}
-          useCSSTransforms={true}
-          isResizable={true}
-          isDroppable={true}
-          containerPadding={[20, 0]}
-          preventCollision={false}
-          onLayoutChange={onLayoutChange}
-          // onLayoutChange={(updateLayout)=>{
-          //   console.log(updateLayout)
-          // }}
-        >
-          {_.map(allStates.items, (el) => createElement(el))}
-        </ReactGridLayout>
-        <div className="text-center m-2">
-        
-        <button 
-        className="bg-green-500 hover:bg-green-700 px-8 py-2  rounded-lg transition delay-150 " 
-        onClick={saveStatesToDB}>Save</button>
-        </div>
-      </div>
-    </>
-  );
+         <div className="py-4 px-8">
+           <img
+             className="object-cover object-center h-20 w-40"
+             src="/cover_photo-374.jpg"
+             alt="--"
+           />
+         </div>
+       </div>
+       {/* end left side */}
+
+       {/* .......... */}
+       <div className="col-span-6 border shadow-lg"></div>
+
+       {/* .......... */}
+       <div class=" col-span-3  shadow-lg border border-gray-400 ">
+         <div class=" py-2  text-center border-b shadow-lg ">
+           <h4>Control Property</h4>
+         </div>
+         <div className="py-2 px-6">
+           <img
+             className="object-cover object-center h-20 w-96"
+             src="/component.png"
+             alt="--"
+           />
+         </div>
+
+         <div className="py-2 px-6">
+           <img
+             className="object-cover object-center h-20 w-96"
+             src="/component.png"
+             alt="--"
+           />
+         </div>
+
+         <div className="py-4 px-8">
+           <img
+             className="object-cover object-center h-20 w-40"
+             src="/cover_photo-374.jpg"
+             alt="--"
+           />
+         </div>
+       </div>
+     </div>
+
+     {/* //////////// */}
+
+     <div className="  md:grid grid-cols-12  gap-3 pt-2 lg:px-0 md:px-5  ">
+       {/* ........... */}
+       <div class=" col-span-3   "></div>
+       {/* ......... */}
+       {/* .......... */}
+       <div className="col-span-6  text-center ">
+         <button
+           class="bg-red-500 text-white rounded-full active:bg-purple-600 font-bold uppercase text-sm px-8 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+           type="button"
+         >
+           Submit
+         </button>{" "}
+       </div>
+
+       {/* .......... */}
+     </div>
+   </div>
+ );
 }
 
 const draggedItem = [
