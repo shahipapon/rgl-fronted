@@ -133,8 +133,8 @@ export default function TableDnd() {
 
         x: layoutItem.x,
         y: Infinity, // puts it at the bottom
-        w: 4,
-        h: 4,
+        w: 3,
+        h: 2,
       }),
     };
     console.log("onDrop ~ newGridItem", newGridItem)
@@ -161,45 +161,25 @@ export default function TableDnd() {
   return (
     <>
       <div className="container mx-auto py-6">
-        <div className="  md:grid grid-cols-12  gap-3 pt-2 lg:px-0 md:px-5  border-4 shadow-2xl ">
-          <div class=" col-span-12  shadow-lg border-2 border-gray-400 ">
-            <div class=" py-2  text-center border-b shadow-lg ">
-              <h4>label 1</h4>
-            </div>
-          </div>
-          {/* ......... */}
-        </div>
-        <div className="  md:grid grid-cols-12  gap-3 pt-2 lg:px-0 md:px-5  border-4 shadow-2xl ">
-          <div className="col-span-12 text-center shadow-lg border-2 border-gray-400">
-            <div className="flex inline-flex  text-left py-4 ">
-              <button
-                class="bg-red-500 text-white rounded-full active:bg-purple-600 font-bold uppercase text-sm px-8 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                Design
-              </button>{" "}
-              <button
-                class="bg-red-500 text-white rounded-full active:bg-purple-600 font-bold uppercase text-sm px-8 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                Html
-              </button>
-            </div>
-          </div>
+        <div className="  md:grid grid-cols-12  gap-3 pt-2  border-4 shadow-2xl ">
+          <h4>label 1</h4>
         </div>
 
         {/* Left Side  */}
-        <div className="  md:grid grid-cols-12  gap-3 pt-2 lg:px-0 md:px-5  ">
+        <div className="  md:grid grid-cols-12  gap-3 pt-2 ">
           <div class=" col-span-3  shadow-lg border border-gray-400 ">
-            <div class=" py-2  text-center border-b shadow-lg ">
+            <div class=" py-2  text-center border-b-2 border-gray-400 shadow-lg ">
               <h4>Dynamic Control</h4>
             </div>
 
             <div>
-              <div  className="border inline-block my-4 "  onClick={() => setSelectedItem(null)} >
+              <div
+                className="border inline-block "
+                onClick={() => setSelectedItem(null)}
+              >
                 {draggedItem.map((item) => (
                   <div
-                    className=" inline-block pr-10 mx-2 pb-2"
+                    className=" inline-block pb-2"
                     key={item.name}
                     draggable={true}
                     unselectable="on"
@@ -216,8 +196,8 @@ export default function TableDnd() {
                     data-layout={item.layout}
                     onClick={() => onItemSelected(item)}
                   >
-                    <div className="py-2 px-6">
-                      <span> {item.name} </span>
+                    <div className="px-6">
+                      {/* <span> {item.name} </span> */}
                       <img
                         className="object-cover object-center "
                         src={dndImageComponents[item.image]}
@@ -232,7 +212,15 @@ export default function TableDnd() {
           {/* end left side */}
 
           {/* Drag Box */}
-          <div className="col-span-6 border shadow-lg">
+          <div className="col-span-6 ">
+            <div className="flex inline-flex  text-left pb-4 ">
+              <button className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2">
+                Design
+              </button>{" "}
+              <button className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2 ml-2">
+                Html
+              </button>
+            </div>
             <ReactGridLayout
               className="layout border-4 border-indigo-600 bg-gray-300 overflow-y-auto  	"
               style={{ minHeight: "90vh" }}
@@ -253,51 +241,25 @@ export default function TableDnd() {
             </ReactGridLayout>
           </div>
           {/* end drag box */}
+          <div class=" col-span-3  shadow-lg border border-gray-400 ">
+            <div class=" py-2  text-center border-b-2 border-gray-400 shadow-lg ">
+              <h4>Control Property</h4>
+            </div>
+
+           {/* Control Property */}
+          </div>
         </div>
-
-        {/* components properties */}
-
-        {/* <div className="p-2 inline-block">
-          {selectedItem === "item1" ? (
-            <label>
-              Select Name For This Component:
-              <select
-                className="pl-2 m-2"
-                // value={userName}
-                onChange={(e) => {
-                  allStates.items.map((obj) =>
-                    obj.objKey === selectedItemKey
-                      ? (obj.info = e.target.value)
-                      : ""
-                  );
-                  console.log(e.target.value);
-                }}
-              >
-                {Object.keys(userName).length >= 1
-                  ? userName.values.map((v) => (
-                      <option key={v?.id} value={v?.id}>
-                        {v?.name}
-                      </option>
-                    ))
-                  : ""}
-              </select>
-            </label>
-          ) : (
-            <label>No Properties available for this {selectedItem}</label>
-          )}
-        </div> */}
 
         {/* components properties */}
       </div>
 
-      <div className="  md:grid grid-cols-12  gap-3 lg:px-0 md:px-5  ">
-        <div class=" col-span-3   "></div>
-        <div className="col-span-6  text-center ">
+      <div className="  md:grid grid-cols-12">
+        <div className="col-span-12 text-center pb-5">
           <button
-            className="bg-red-500 text-white rounded-full active:bg-purple-600 font-bold uppercase text-sm px-8 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2"
             type="button"
             onClick={saveStatesToDB}
-          >   
+          >
             Submit
           </button>
         </div>
