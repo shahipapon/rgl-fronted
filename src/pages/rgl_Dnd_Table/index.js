@@ -125,6 +125,7 @@ export default function TableDnd() {
 
   async function saveStatesToDB() {
     const response = await rglAPIController.updateTableConfig( JSON.stringify(allStates));
+    console.log("🚀 ~ file: index.js ~ line 128 ~ saveStatesToDB ~ response", response)
     response && alert('Done!!! Please go render page to check')
  }
   return (
