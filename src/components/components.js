@@ -1,6 +1,16 @@
 import { Radio, RadioGroup } from 'react-radio-group';
 
-
+function getCheckBoxValue(){
+    var markedCheckbox = document.getElementsByName('cbox');  
+    let values = ''
+    for (var checkbox of markedCheckbox) {  
+      if (checkbox.checked)  {
+        values+= `${checkbox.value}, `
+      }
+      
+    }   
+    console.log('checkbox value:',values)
+}
 
 function handleChange(e) {
   console.log(e?.target?.value ? e.target.value : e);
@@ -31,11 +41,11 @@ function dropDown() {
 function checkbox() {
   return (
     <>
-      <input type="checkbox" name="vehicle1" value="Bike" />
+      <input type="checkbox" name="cbox" value="Checkbox 1" onChange={getCheckBoxValue}/>
       <label for="vehicle1"> Checkbox 1 </label>
-      <input type="checkbox" name="vehicle2" value="Car" />
+      <input type="checkbox" name="cbox" value="Checkbox 2" onChange={getCheckBoxValue}/>
       <label for="vehicle2"> Checkbox 2 </label>
-      <input type="checkbox" name="vehicle3" value="Boat" checked />
+      <input type="checkbox" name="cbox" value="Checkbox 3" onChange={getCheckBoxValue} />
       <label for="vehicle3"> Checkbox 3 </label>
     </>
   );

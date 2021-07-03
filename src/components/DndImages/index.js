@@ -1,24 +1,16 @@
-// import CardImageMulti from "../../images/CardImageMulti.png";
-// import CardImageSingle from "../../images/CardImageSingle.png";
+
 import ItemCheckBox from '../../images/ItemCheckBox.png';
 import ItemDate from '../../images/ItemDate.png';
 import ItemDropDown from '../../images/ItemDropDown.png';
 import ItemInput from "../../images/ItemInput.png";
 import ItemRadioButton from '../../images/ItemRadioButton.png';
 
-const dndImageComponents = { 
-    // CardImageSingle,
-    // CardImageMulti,
-    ItemInput,
-    ItemCheckBox,
-    ItemRadioButton,
-    ItemDropDown,
-    ItemDate,
-
-
-    
-    
-    
+const dndImageComponents = {
+  ItemInput,
+  ItemCheckBox,
+  ItemRadioButton,
+  ItemDropDown,
+  ItemDate,
 };
 
 const dndImageComponentsBase64 = {

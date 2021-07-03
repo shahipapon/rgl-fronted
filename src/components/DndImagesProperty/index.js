@@ -1,38 +1,6 @@
 
 const draggedItem = [
-    // {
-    //   key: "",
-    //   objKey: 1,
-    //   name: "Single Item",
-    //   type: "item1",
-    //   image: "CardImageSingle",
-    //   info: "",
-    //   layout: {
-    //     resizeHandles: [],
-    //     w: 4,
-    //     h: 2,
-    //     x: 0,
-    //     y: Infinity,
-    //     // minW: 0,
-    //     // maxW: 12,
-    //   },
-    // },
-    // {
-    //   key: "",
-    //   objKey: 2,
-    //   name: "List  Item",
-    //   type: "item2",
-    //   image: "CardImageMulti",
-    //   layout: {
-    //     resizeHandles: [],
-    //     w: 4,
-    //     h: 2,
-    //     x: 1,
-    //     y: Infinity,
-    //     // minW: 3,
-    //     // maxW: 12,
-    //   },
-    // },
+  
     // input
     {
         key: "",

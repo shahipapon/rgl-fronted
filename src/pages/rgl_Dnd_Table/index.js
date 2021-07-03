@@ -3,12 +3,12 @@ import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import GridLayout, { WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
+import { useHistory } from 'react-router-dom';
 import { dndImageComponents, dndImageComponentsBase64 } from '../../components/DndImages';
 import draggedItem from '../../components/DndImagesProperty';
 import rglAPIController from "../../services/api.services";
 import "../../styles.css";
 
-const axios = require("axios");
 const ReactGridLayout = WidthProvider(GridLayout);
 
 
@@ -17,31 +17,21 @@ export default function TableDnd() {
   const [dndClickedDataInfo, SetDndClickedDataInfo] = useState(null);
   const [selectedItem, setSelectedItem] = useState();
   const [selectedItemKey, setSelectedItemKey] = useState();
-  const [userName, SetUserName] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     getPreviousRenderedData();
-    
   }, []);
 
   
-  async function getPreviousRenderedData (){
-
+  async function getPreviousRenderedData() {
     const response = await rglAPIController.getTableConfig();
-   
+
     let page = response.data[0].config;
-    setAllStates(JSON.parse(page))
-
+    setAllStates(JSON.parse(page));
   }
 
- async function getUser(){
-    const response = await rglAPIController.getAllUser();
-    SetUserName({
-      values: response.data
-    });
-  }
   function onItemSelected(item, dragged = false) {
-  console.log("🚀 ~ file: index.js ~ line 43 ~ onItemSelected ~ item", item)
     
     const newGridItem = {
       // ...allStates.items,
@@ -61,21 +51,11 @@ export default function TableDnd() {
   }
 
   function onLayoutChange(updateLayout) {
-  console.log("🚀 ~ file: index.js ~ line 72 ~ onLayoutChange ~ updateLayout", updateLayout)
-  let gfg = _.orderBy(updateLayout, ['y', 'x'], 
-  ['asc', 'asc']);
-  console.log("🚀 gfg", gfg)
-
-
-  var result = _(updateLayout)
-            .groupBy(x => x.y)
-            .map((value, key) => ({y: key, x: value}))
-            .value();
-            console.log("group res", result)
-
 
     const items = [...allStates.items];
 
+
+    //automatically merge the main layout. no need to use merged anywhere
     const merged = _(items) // start sequence
       .keyBy("i") // create a dictionary of the 1st array
       .merge(_.keyBy(updateLayout, "i")) // create a dictionary of the 2nd array, and merge it to the 1st
@@ -203,10 +183,13 @@ export default function TableDnd() {
           {/* Drag Box */}
           <div className="col-span-8 ">
             <div className="flex inline-flex  text-left pb-4 ">
-              <button className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2">
+              <button className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2"
+               onClick={()=>history.push('/')}
+               >
                 Design
-              </button>{" "}
-              <button className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2 ml-2">
+              </button>
+              <button className="bg-white-500 border border-2 border-black  rounded-full  font-bold uppercase text-sm px-8 py-2 ml-2"
+              onClick={()=>history.push('/tableFrontend')}>
                 Html
               </button>
             </div>
@@ -220,7 +203,7 @@ export default function TableDnd() {
               isResizable={false}
               isDroppable={true}
               containerPadding={[20, 0]}
-              preventCollision={false}
+              preventCollision={true}
               onLayoutChange={onLayoutChange}
               // onLayoutChange={(updateLayout)=>{
               //   console.log(updateLayout)
