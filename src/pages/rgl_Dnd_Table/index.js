@@ -167,7 +167,7 @@ export default function TableDnd() {
 
         {/* Left Side  */}
         <div className="  md:grid grid-cols-12  gap-3 pt-2 ">
-          <div class=" col-span-3  shadow-lg border border-gray-400 ">
+          <div class=" col-span-2  shadow-lg border border-gray-400 ">
             <div class=" py-2  text-center border-b-2 border-gray-400 shadow-lg ">
               <h4>Dynamic Control</h4>
             </div>
@@ -196,7 +196,7 @@ export default function TableDnd() {
                     data-layout={item.layout}
                     onClick={() => onItemSelected(item)}
                   >
-                    <div className="px-6">
+                    <div className="">
                       {/* <span> {item.name} </span> */}
                       <img
                         className="object-cover object-center "
@@ -212,7 +212,7 @@ export default function TableDnd() {
           {/* end left side */}
 
           {/* Drag Box */}
-          <div className="col-span-6 ">
+          <div className="col-span-8 ">
             <div className="flex inline-flex  text-left pb-4 ">
               <button className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2">
                 Design
@@ -241,7 +241,7 @@ export default function TableDnd() {
             </ReactGridLayout>
           </div>
           {/* end drag box */}
-          <div class=" col-span-3  shadow-lg border border-gray-400 ">
+          <div class=" col-span-2  shadow-lg border border-gray-400 ">
             <div class=" py-2  text-center border-b-2 border-gray-400 shadow-lg ">
               <h4>Control Property</h4>
             </div>
