@@ -35,7 +35,6 @@ export default function Rgl() {
   
 
   async function getPreviousRenderedData (){
-    axios.get('http://localhost:3008/api/rglData')
 
     const response = await rglAPIController.getAll();
     let page = response.data[0].data;
@@ -140,20 +139,9 @@ export default function Rgl() {
     setAllStates(newGridItem);
   }
 
-  function saveStatesToDB() {
-    axios
-      .put("http://localhost:3008/api/addrgldata", {
-        data: JSON.stringify(allStates),
-      })
-      .then((res) => {
-        console.log('res',res);
-        
-      })
-      .catch((err) => {
-        // console.error(err);
-        alert('Something Wrong')
-      });
-      alert('Done!!! Please go render page to check')
+  async function saveStatesToDB() {
+    const response = await rglAPIController.updateRglConfig( JSON.stringify(allStates));
+    response && alert('Done!!! Please go render page to check')
  }
   return (
     <>

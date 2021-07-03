@@ -2,35 +2,38 @@ import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Radio, RadioGroup } from 'react-radio-group';
 import rglAPIController from "../../services/api.services";
-import ComponentMapper from '../ComponentMapper';
+import ComponentMapper from "../ComponentMapper";
 
 
-export default function TableFrontend({ pageData }) {
-    const [allStates, setAllStates] = useState("");
+export default function TableFrontend() {
+    const [rglConfig, setRglConfig] = useState([]);
+    const [maxRows, setMaxRows] = useState(0);
 
-    useEffect(() => {
-      getPreviousRenderedData();
-    }, []);
-  
-  async function getPreviousRenderedData (){
-    const response = await rglAPIController.getAll();
-    let page = response.data[0].data;
+  useEffect(() => {
+    getDesignedLayout();
+  }, []);
+
+  async function getDesignedLayout() {
+    const response = await rglAPIController.getTableConfig();
+    let page = response.data[0].config;
+    page = JSON.parse(page);
     
-    let orderByAscX = _.orderBy(JSON.parse(page).items,["y", "x"], ["asc", "asc"] );
+    let orderByAscX = _.orderBy(page.items,["y", "x"], ["asc", "asc"] );
     
-    var Gresult = _(orderByAscX)
+    var groupYwithX = _(orderByAscX)
                     .groupBy((x) => x.y)
                     .map((value, key) => ({ column: key, rows: value.map((e) => e.type) }))
                     .value();
-           
-     console.log("group res", Gresult);
+    
+     const maxRows = Math.max(...groupYwithX.map(({rows})=>rows.length))
+     console.log("🚀 ~ file: index.js ~ line 29 ~ getDesignedLayout ~ maxRows", maxRows)
+     setMaxRows(maxRows);
 
 
-    setAllStates(JSON.parse(page))
 
+    setRglConfig(groupYwithX);
   }
-
-
+  
 
   function  op(){
       return (
@@ -81,18 +84,47 @@ export default function TableFrontend({ pageData }) {
     { id: 4, name: "Asad", age: 25, email: "asad@email.com" },
   ];
 
-  let inpq = 'inp'
+function fillEmptyrows(fillTimes){
+while(fillTimes--){
+  console.log(fillTimes)
+}
+
+}
   function renderTableData() {
-    return students.map((student, index) => {
-      const { id, name, age, email } = student; //destructuring
+    return rglConfig.map((column, index) => {
+     console.log("🚀 ~ file: index.js ~ line 92 ~ getDesignedLayout ~ maxRows", maxRows)
+     console.log("🚀 ~ file: index.js ~ line 92 ~ getDesignedLayout ~ maxRows", maxRows)
+     console.log("🚀 ~ file: index.js ~ line 92 ~ getDesignedLayout ~ maxRows", maxRows)
+      // const { id, name, age, email } = 'student'; //destructuring
+      const fillCount = maxRows - column.rows.length
+      const fillArray  =new Array(fillCount).fill('---');
+
+
       return (
-        <tr key={id}>
-         
-          <td className="border border-green-600 p-5">{ComponentMapper('')}</td>
-          <td className="border border-green-600 p-5">{op()}</td>
+        
+        <tr key={index}>
+          {/* <td className="border border-green-600 p-5">{ComponentMapper('')}</td> */}
+          {/* <td className="border border-green-600 p-5">{op()}</td>
           <td className="border border-green-600 p-5">{radioGroup()}</td>
-          <td className="border border-green-600 p-5">{calender()}</td>
-          <td className="border border-green-600 p-5">---</td>
+          <td className="border border-green-600 p-5">{calender()}</td> */}
+
+          {column.rows.map((row) => (
+            <td className="border border-green-600 p-5">
+              <ComponentMapper rows={row} />
+            </td>
+          ))}
+         { fillEmptyrows(fillCount)}
+
+         {fillArray.map((fill)=>(
+          <td className="border border-green-600 p-5">
+             ---
+            </td>
+          ))}
+
+
+        
+
+        
         </tr>
       );
     });

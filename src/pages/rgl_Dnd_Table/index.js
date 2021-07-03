@@ -25,10 +25,11 @@ export default function TableDnd() {
   }, []);
 
   
-
   async function getPreviousRenderedData (){
-    const response = await rglAPIController.getAll();
-    let page = response.data[0].data;
+
+    const response = await rglAPIController.getTableConfig();
+   
+    let page = response.data[0].config;
     setAllStates(JSON.parse(page))
 
   }
@@ -133,7 +134,7 @@ export default function TableDnd() {
 
         x: layoutItem.x,
         y: Infinity, // puts it at the bottom
-        w: 3,
+        w: 2,
         h: 2,
       }),
     };
@@ -142,21 +143,9 @@ export default function TableDnd() {
     setAllStates(newGridItem);
   }
 
-  function saveStatesToDB() {
-    axios
-      .put("http://localhost:3008/api/addrgldata", {
-        data: JSON.stringify(allStates),
-      })
-      .then((res) => {
-        console.log('res',res);
-        
-      })
-      .catch((err) => {
-        // console.error(err);
-        alert('Something Wrong')
-      });
-    // console.log('allStates: ',allStates)
-      alert('Done!!! Please go render page to check')
+  async function saveStatesToDB() {
+    const response = await rglAPIController.updateTableConfig( JSON.stringify(allStates));
+    response && alert('Done!!! Please go render page to check')
  }
   return (
     <>

@@ -38,7 +38,7 @@ const draggedItem = [
         key: "",
         objKey: 3,
         name: "Input",
-        type: "item-input",
+        type: "item_input",
         image: "ItemInput",
         layout: {
           resizeHandles: [],
@@ -55,7 +55,7 @@ const draggedItem = [
       key: "",
       objKey: 5,
       name: "CheckBox",
-      type: "item-checkbox",
+      type: "item_checkbox",
       image: "ItemCheckBox",
       layout: {
         resizeHandles: [],
@@ -72,7 +72,7 @@ const draggedItem = [
         key: "",
         objKey: 5,
         name: "RadioButton",
-        type: "item-RadioButton",
+        type: "item_RadioButton",
         image: "ItemRadioButton",
         layout: {
           resizeHandles: [],
@@ -89,7 +89,7 @@ const draggedItem = [
         key: "",
         objKey: 6,
         name: "DropDown",
-        type: "item-DropDown",
+        type: "item_DropDown",
         image: "ItemDropDown",
         layout: {
           resizeHandles: [],
@@ -106,7 +106,7 @@ const draggedItem = [
         key: "",
         objKey: 7,
         name: "Date Picker",
-        type: "item-Date",
+        type: "item_Date",
         image: "ItemDate",
         layout: {
           resizeHandles: [],
