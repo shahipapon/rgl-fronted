@@ -42,11 +42,11 @@ function checkbox() {
   return (
     <>
       <input type="checkbox" name="cbox" value="Checkbox 1" onChange={getCheckBoxValue}/>
-      <label for="vehicle1"> Checkbox 1 </label>
+      <label for="cbox1"> Checkbox 1 </label>
       <input type="checkbox" name="cbox" value="Checkbox 2" onChange={getCheckBoxValue}/>
-      <label for="vehicle2"> Checkbox 2 </label>
+      <label for="cbox2"> Checkbox 2 </label>
       <input type="checkbox" name="cbox" value="Checkbox 3" onChange={getCheckBoxValue} />
-      <label for="vehicle3"> Checkbox 3 </label>
+      <label for="cbox3"> Checkbox 3 </label>
     </>
   );
 }
