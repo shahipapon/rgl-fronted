@@ -18,12 +18,12 @@ function handleChange(e) {
 }
 
 function controll(property) {
-  return `${property.textColor === "red" ? "text-red-600" : ""} ${
-    property.textColor === "green" ? "text-green-600" : ""
-  } ${property.textColor === "blue" ? "text-blue-600" : ""}
-  ${property.fontStyle === "bold" ? "font-bold" : ""} ${
-    property.fontStyle === "italic" ? "italic" : ""
-  } ${property.fontStyle === "boldItalic" ? "italic font-bold" : ""}  abc `;
+  return `${property?.textColor === "red" ? "text-red-600" : ""} ${
+    property?.textColor === "green" ? "text-green-600" : ""
+  } ${property?.textColor === "blue" ? "text-blue-600" : ""}
+  ${property?.fontStyle === "bold" ? "font-bold" : ""} ${
+    property?.fontStyle === "italic" ? "italic" : ""
+  } ${property?.fontStyle === "boldItalic" ? "italic font-bold" : ""}  abc `;
 }
 
 
