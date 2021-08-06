@@ -116,11 +116,6 @@ export default function TableDnd() {
         y: Infinity, // puts it at the bottom
         w: 2,
         h: 2,
-        controllProperty: {
-          fontStyle:'',
-          textColor:'',
-          borderStyle: '',
-        }
       }),
     };
     console.log("onDrop ~ newGridItem", newGridItem)
@@ -219,59 +214,12 @@ export default function TableDnd() {
             </ReactGridLayout>
           </div>
           {/* end drag box */}
-          
-          <div class=" col-span-2  shadow-lg border border-gray-400 p-2 ">
+          <div class=" col-span-2  shadow-lg border border-gray-400 ">
             <div class=" py-2  text-center border-b-2 border-gray-400 shadow-lg ">
               <h4>Control Property</h4>
             </div>
 
            {/* Control Property */}
-
-            {
-              selectedItem === 'item_Date' ? <h1>Sorry!! No Property available for this this item</h1>  :
-              (selectedItem === "item_input" ?
-                  <>
-                    <h4>Set Border Style(Default=solid): </h4>
-                        <div 
-                        onChange={(e)=>{ 
-                          allStates.items.map((obj) => obj.type === selectedItem && (obj.controllProperty.borderStyle =  e.target.value) 
-                           );
-                        }}>
-                          <input type="radio" value="solid" name="borderStyle" /> Solid( __ ) <br/> 
-                          <input type="radio" value="dashed" name="borderStyle" /> Dashed( - - ) <br/> 
-                          <input type="radio" value="dotted" name="borderStyle" /> Dotted( . . )
-                        </div>
-                  </>
-                 :
-                 <>
-                  <div className="mt-4" onChange={(e)=>{  
-                        allStates.items.map((obj) => obj.type === selectedItem && (obj.controllProperty.textColor = e.target.value)  );
-                      }}>
-                      <h4>Text Style: </h4>
-                        <input type="radio" value="red" name="textStyle" /> Red
-                        <input type="radio" value="blue" name="textStyle" /> Blue
-                        <input type="radio" value="green" name="textStyle" /> Green
-                  </div>
-
-                    
-                    <div className="mt-4" onChange={(e)=>{  
-                        allStates.items.map((obj) => obj.type === selectedItem && (obj.controllProperty.fontStyle = e.target.value)  );
-                      }}>
-                        <h4 >Font Style: </h4>
-                        <input type="radio" value="bold" name="fontStyle" /> Bold <br/>
-                        <input type="radio" value="italic" name="fontStyle" /> Italic  <br/>
-                        <input type="radio" value="boldItalic" name="fontStyle" /> BoldItalic <br/>
-                    </div>
-             </>
-        
-              )
-            }
-           
-            
-           
-            
-
-           
           </div>
         </div>
 

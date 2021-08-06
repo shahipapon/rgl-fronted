@@ -32,39 +32,30 @@ export default function TableFrontend() {
     page = JSON.parse(page);
 
     let orderByAscX = _.orderBy(page.items, ["y", "x"], ["asc", "asc"]);
-    console.log("🚀 ~ file: index.js ~ line 35 ~ getDesignedLayout ~ orderByAscX", orderByAscX)
 
     var groupYwithX = _(orderByAscX)
       .groupBy((x) => x.y)
-      .map((value, key) => ({ column: key, rows: {
-       row:  value.map((e) => e.type),
-       controllProperty: value.map((e) => e.controllProperty) 
-      } 
-      }))
+      .map((value, key) => ({ column: key, rows: value.map((e) => e.type) }))
       .value();
-      console.log("🚀 ~ file: index.js ~ line 37 ~ getDesignedLayout ~ groupYwithX", groupYwithX)
 
-    const maxRows = Math.max(...groupYwithX.map(({ rows }) => rows.row.length));
+    const maxRows = Math.max(...groupYwithX.map(({ rows }) => rows.length));
     setMaxRows(maxRows);
 
     setRglConfig(groupYwithX);
   }
 
   function renderTableData() {
-    
     return rglConfig.map((column, index) => {
-      const fillCount = maxRows - column.rows.row.length;
+      const fillCount = maxRows - column.rows.length;
       const fillArray = new Array(fillCount).fill("---");
 
       return (
         <tr key={index}>
           {/* Table Cells */}
           <td className="border border-black p-5">{index + 1}</td>
-          {column.rows.row.map((row,index) => (
+          {column.rows.map((row) => (
             <td className="border border-black p-5">
-            {console.log(column.rows.row[index],"--",column.rows.controllProperty[index])}
-            
-              <ComponentMapper rows={row} controllProperty={column.rows.controllProperty[index]} />
+              <ComponentMapper rows={row} />
             </td>
           ))}
 

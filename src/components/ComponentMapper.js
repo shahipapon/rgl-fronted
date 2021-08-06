@@ -14,11 +14,11 @@ const DesignerComponent = {
   item_Date: dateTimePicker,
 };
 
-export default function ComponentMapper({ rows,controllProperty }) {
+export default function ComponentMapper({ rows }) {
   const Component = DesignerComponent[rows];
   return (
     <>
-          <Component controllProperty={controllProperty} />
+          <Component />
     </>
   );
 }
