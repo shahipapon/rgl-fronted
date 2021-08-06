@@ -35,9 +35,9 @@ function input({controllProperty}) {
       placeholder="enter your text"
       className={
         `border-2 border-black w-36  focus:outline-none 
-         ${controllProperty.borderStyle=== 'solid' && 'border-solid	'  }	
-         ${controllProperty.borderStyle=== 'dashed' && "border-dashed"  }	
-         ${controllProperty.borderStyle=== 'dotted' && "border-dotted"  }	
+         ${controllProperty?.borderStyle=== 'solid' && 'border-solid	'  }	
+         ${controllProperty?.borderStyle=== 'dashed' && "border-dashed"  }	
+         ${controllProperty?.borderStyle=== 'dotted' && "border-dotted"  }	
        `}
       onChange={handleChange}
     />
