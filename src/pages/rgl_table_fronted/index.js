@@ -11,7 +11,6 @@ import atomDark from "react-syntax-highlighter/dist/esm/styles/prism/atom-dark";
 import ComponentMapper from "../../components/ComponentMapper";
 import rglAPIController from "../../services/api.services";
 
-
 SyntaxHighlighter.registerLanguage("jsx", jsx);
 
 export default function TableFrontend() {
@@ -32,17 +31,25 @@ export default function TableFrontend() {
     page = JSON.parse(page);
 
     let orderByAscX = _.orderBy(page.items, ["y", "x"], ["asc", "asc"]);
-    console.log("🚀 ~ file: index.js ~ line 35 ~ getDesignedLayout ~ orderByAscX", orderByAscX)
+    console.log(
+      "🚀 ~ file: index.js ~ line 35 ~ getDesignedLayout ~ orderByAscX",
+      orderByAscX
+    );
 
     var groupYwithX = _(orderByAscX)
       .groupBy((x) => x.y)
-      .map((value, key) => ({ column: key, rows: {
-       row:  value.map((e) => e.type),
-       controllProperty: value.map((e) => e.controllProperty) 
-      } 
+      .map((value, key) => ({
+        column: key,
+        rows: {
+          row: value.map((e) => e.type),
+          controllProperty: value.map((e) => e.controllProperty),
+        },
       }))
       .value();
-      console.log("🚀 ~ file: index.js ~ line 37 ~ getDesignedLayout ~ groupYwithX", groupYwithX)
+    console.log(
+      "🚀 ~ file: index.js ~ line 37 ~ getDesignedLayout ~ groupYwithX",
+      groupYwithX
+    );
 
     const maxRows = Math.max(...groupYwithX.map(({ rows }) => rows.row.length));
     setMaxRows(maxRows);
@@ -51,7 +58,6 @@ export default function TableFrontend() {
   }
 
   function renderTableData() {
-    
     return rglConfig.map((column, index) => {
       const fillCount = maxRows - column.rows.row.length;
       const fillArray = new Array(fillCount).fill("---");
@@ -60,11 +66,18 @@ export default function TableFrontend() {
         <tr key={index}>
           {/* Table Cells */}
           <td className="border border-black p-5">{index + 1}</td>
-          {column.rows.row.map((row,index) => (
+          {column.rows.row.map((row, index) => (
             <td className="border border-black p-5">
-            {console.log(column.rows.row[index],"--",column.rows.controllProperty[index])}
-            
-              <ComponentMapper rows={row} controllProperty={column.rows.controllProperty[index]} />
+              {console.log(
+                column.rows.row[index],
+                "--",
+                column.rows.controllProperty[index]
+              )}
+
+              <ComponentMapper
+                rows={row}
+                controllProperty={column.rows.controllProperty[index]}
+              />
             </td>
           ))}
 
@@ -92,25 +105,29 @@ export default function TableFrontend() {
   return (
     <>
       <div className="container mx-auto px-20 mt-5 text-center ">
-        <div className="flex inline-flex  text-left pb-4 ">
-          
-          <button className="bg-white-500 border border-2 border-black  rounded-full  font-bold uppercase text-sm px-8 py-2 mr-2"
-            onClick={() => history.push("/")} >
+        <div className="inline-flex  text-left pb-4 ">
+          <button
+            className="bg-white-500 border border-black  rounded-full  font-bold uppercase text-sm px-8 py-2 mr-2"
+            onClick={() => history.push("/")}
+          >
             Design
           </button>
 
-          <button className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2"
+          <button
+            className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2"
             onClick={() => history.push("/tableFrontend")}
           >
             Html
           </button>
-
         </div>
 
         <div className="text-xl mt-2">Table Controll(s)</div>
 
         <div className="flex flex-wrap content-center" ref={container}>
-          <table id="rgl-table"  className="border-collapse border border-black h-40 table-auto flex-grow grow-center">
+          <table
+            id="rgl-table"
+            className="border-collapse border border-black h-40 table-auto flex-grow grow-center"
+          >
             <thead>
               <tr>
                 <th className="border border-green-600 ...">#</th>
@@ -120,11 +137,13 @@ export default function TableFrontend() {
 
             <tbody>{renderTableData()}</tbody>
           </table>
-
         </div>
-        <button className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2 my-2"
+        <button
+          className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2 my-2"
           onClick={checkOutput}
-        >  show code
+        >
+          {" "}
+          show code
         </button>
 
         <section>
@@ -135,26 +154,25 @@ export default function TableFrontend() {
           >
             <button
               className="bg-red-500 text-white rounded-full  font-bold uppercase text-sm px-8 py-2"
-              onClick={() => { 
-                setcp(container.current.innerHTML)
-                if (window.confirm(
-                  `\nCode copied.\n\n You can directly paste your code  in html body section to check the output.\n\nAlso you can directly check from w3schools. Delete all inside body section & paste.\nclick "ok" to go  website `)) 
-                  {
-                    window.open(
-                      "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_collapse",
-                      "_blank" // <- This is what makes it open in a new window.
-                    );
-                  };
+              onClick={() => {
+                setcp(container.current.innerHTML);
+                if (
+                  window.confirm(
+                    `\nCode copied.\n\nYou can directly paste your code in any to html check the output. I have generated a html with tailwind support.(Check 'test copied html here' folder)\n\nAlso you can directly check from w3schools(without css). Delete all inside body section & paste.\nclick "ok" to go  website `
+                  )
+                ) {
+                  window.open(
+                    "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_collapse",
+                    "_blank" // <- This is what makes it open in a new window.
+                  );
+                }
                 // alert(`  <a href=""></a>`)
-                 }}
+              }}
             >
               Copy to clipboard
             </button>
-           
-
           </CopyToClipboard>
         </section>
-
       </div>
 
       <div className="container mx-auto px-20 mt-5  ">
