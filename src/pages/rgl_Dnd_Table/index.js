@@ -118,6 +118,7 @@ export default function TableDnd() {
           fontStyle: "",
           textColor: "",
           borderStyle: "",
+          dateFormat:"",
         },
       }),
     };
@@ -242,7 +243,21 @@ export default function TableDnd() {
           {
             selectedItem.length>0 && (
               
-              selectedItem === "item_Date" ? <h1>Sorry!! No Property available for this this item</h1> :
+              selectedItem === "item_Date" ?  <>
+                    <h1 className="text-center pb-2"> select Date  Format  </h1>
+                    <div onChange={(e) => { allStates.items.map( (obj) =>
+                            obj.type === selectedItem &&  (obj.controllProperty.dateFormat = e.target.value)
+                        );
+                      }}
+                    >
+                      <RadioGroup name="dateFormat" selectedValue={selectedValue}  onChange={onRadioChange} >
+                        <Radio value="Default" /> Default ( yyyy-mm-dd ) <br/>
+                        <Radio value="dd:MM:yyyy" /> dd: MM: yyyy <br/>
+                        <Radio value="dd-LongM-yyyy" /> dd-LongM-yyyy <br/> 
+                        <Radio value="ShortM,dd,yyyy" /> ShortM, dd, yyyy <br/> 
+                      </RadioGroup>
+                    </div>
+                  </> :
                selectedItem === "item_input" ? (
                  <>
                     <h1 className="text-center pb-2"> Set Border Style (Default=solid) </h1>
