@@ -87,7 +87,7 @@ function radioButton({ controllProperty }) {
 }
 function dateTimePicker({controllProperty}) {
   return (
-    <input type="date" id="" name="" onChange={handleChange} className="border-2 border-gray-500"/>
+    <input type="date" id="date" customDateFormat={controllProperty.dateFormat}  className="border-2 border-gray-500"/>
   )
 }
 
